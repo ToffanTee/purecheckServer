@@ -4,8 +4,8 @@ const sanitize = require("perfect-express-sanitizer");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
-const authRoute = require("./routes/authRoute");
-const { userLogin } = require("./controllers/authController");
+const authRoutes = require("./routes/authRoute");
+const companyRoutes = require("./routes/companyRoutes");
 
 // cors option object to establish handshake with client
 const corsOptions = {
@@ -20,7 +20,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api", userRoutes);
-app.use("/api", userLogin);
+app.use("/api", authRoutes);
+app.use("/api", companyRoutes);
 
 app.use(sanitize.clean({ xss: true, noSql: true, sql: true }));
 

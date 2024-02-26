@@ -53,4 +53,15 @@ const userLogin = async (req, res) => {
   }
 };
 
-module.exports = { userLogin };
+const LogoutUser = async (req, res) => {
+  const cookieOptions = {
+    httpOnly: true,
+    sameSite: "none",
+    secure: true,
+  };
+  res
+    .clearCookie("authToken", cookieOptions)
+    .json({ message: "Logged out successfullly!" });
+};
+
+module.exports = { userLogin, LogoutUser };

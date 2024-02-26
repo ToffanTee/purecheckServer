@@ -8,6 +8,8 @@ const envVariables = {
   REFRESH_TOKEN: process.env.REFRESH_TOKEN,
   ACCESS_TOKEN: process.env.ACCESS_TOKEN,
   USER_EMAIL: process.env.USER_EMAIL,
+  SMTP_HOST: process.env.SMTP_HOST,
+  SMTP_PASS: process.env.SMTP_PASS,
 };
 
 module.exports = envVariables;
