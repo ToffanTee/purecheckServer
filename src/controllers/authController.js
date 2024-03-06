@@ -14,6 +14,10 @@ const userLogin = async (req, res) => {
       return res.status(404).json({ error: "User email does not exist!" });
     }
 
+    if (!user?.isVerified) {
+      return res.status(403).json({ error: "User is not verified" });
+    }
+
     //compare the entered password with the hashed password in database
     const passwordIsMatch = await bcrypt.compare(password, user.password);
 
@@ -25,6 +29,7 @@ const userLogin = async (req, res) => {
     const payload = {
       email: user.email,
       id: user._id,
+      companyName: "Tesco Limited",
     };
 
     // jsonwebtoken SECRET

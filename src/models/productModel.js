@@ -7,10 +7,9 @@ const productSchema = new Schema(
     name: { type: String, required: true },
     description: { type: String, required: true },
     NAFDAC_NO: { type: String, required: true },
-    company: {
-      companyName: String,
-      companyId: { type: mongoose.Schema.Types.ObjectId, ref: "company" },
-    }, // databse association
+    company: String,
+
+    items: [],
   },
   { timestamps: true }
 );

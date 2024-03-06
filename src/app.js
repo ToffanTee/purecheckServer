@@ -6,6 +6,7 @@ const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoute");
 const companyRoutes = require("./routes/companyRoutes");
+const blogRoutes = require("./routes/blogRoutes");
 
 // cors option object to establish handshake with client
 const corsOptions = {
@@ -22,6 +23,7 @@ app.use(cookieParser());
 app.use("/api", userRoutes);
 app.use("/api", authRoutes);
 app.use("/api", companyRoutes);
+app.use("/api", blogRoutes);
 
 app.use(sanitize.clean({ xss: true, noSql: true, sql: true }));
 
