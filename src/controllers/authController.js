@@ -29,7 +29,6 @@ const userLogin = async (req, res) => {
     const payload = {
       email: user.email,
       id: user._id,
-      companyName: "Tesco Limited",
     };
 
     // jsonwebtoken SECRET

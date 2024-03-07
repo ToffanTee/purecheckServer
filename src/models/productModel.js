@@ -9,6 +9,8 @@ const productSchema = new Schema(
     NAFDAC_NO: { type: String, required: true },
     company: String,
 
+    productCode: String,
+
     items: [],
   },
   { timestamps: true }

@@ -10,8 +10,9 @@ const companySchema = new Schema(
     subExpiryDate: { type: Date, default: Date.now() },
     subscriptionType: {
       type: String,
-      enum: ["monthly", "quateryly", "annually"],
+      enum: ["Monthly", "Quateryly", "Annually"],
     },
+    createdBy: String,
   },
   { timestamps: true }
 );
