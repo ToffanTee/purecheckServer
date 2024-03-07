@@ -11,7 +11,8 @@ const blogRoutes = require("./routes/blogRoutes");
 // cors option object to establish handshake with client
 const corsOptions = {
   origin: "https://purecheck.vercel.app/", // frontend url
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various versions of Safari) choke on 204
+  preflightContinue: false,
+  optionsSuccessStatus: 204, // some legacy browsers (IE11, various versions of Safari) choke on 204
   credentials: true,
 };
 
