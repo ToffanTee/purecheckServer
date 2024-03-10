@@ -7,9 +7,11 @@ const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoute");
 const companyRoutes = require("./routes/companyRoutes");
 const blogRoutes = require("./routes/blogRoutes");
+const communityRoutes = require("./routes/communityRoutes");
 
 // cors option object to establish handshake with client
 const corsOptions = {
+  // origin: "http://localhost:3000", // update this for deployment
   origin: "https://purecheck.vercel.app", // frontend url
   preflightContinue: false,
   optionsSuccessStatus: 204, // some legacy browsers (IE11, various versions of Safari) choke on 204
@@ -25,6 +27,7 @@ app.use("/api", userRoutes);
 app.use("/api", authRoutes);
 app.use("/api", companyRoutes);
 app.use("/api", blogRoutes);
+app.use("/api", communityRoutes);
 
 app.use(sanitize.clean({ xss: true, noSql: true, sql: true }));
 
