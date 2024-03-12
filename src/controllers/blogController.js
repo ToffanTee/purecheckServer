@@ -117,6 +117,7 @@ const deleteBlog = async (req, res) => {
 
 const getSingleBlog = async (req, res) => {
   const blogTitle = req.params.blogTitle;
+  console.log(blogTitle);
   try {
     // Find all blogs in the database
     const blog = await Blog.findOne({ title: blogTitle }); // Using Mongoose to find all blog documents

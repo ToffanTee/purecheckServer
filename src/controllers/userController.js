@@ -12,9 +12,24 @@ const createUser = async (req, res) => {
     const userExist = await getUserByEmail(email); // checks if user has already onboarded
 
     if (userExist) {
-      return res
-        .status(403)
-        .json({ error: "User with this email already exists." });
+      if (userExist.isVerified) {
+        return res
+          .status(403)
+          .json({ error: "User with this email already exists." });
+      }
+
+      if (!userExist.isVerified) {
+        // handle account verification
+        sendVerificationEmail(
+          userExist.email,
+          userExist.verificationToken,
+          userExist.firstName
+        );
+
+        return res.status(200).json({
+          message: `Please follow the instructions in your email ${userExist?.email} to verify your account.`,
+        });
+      }
     }
 
     // generate OTP
