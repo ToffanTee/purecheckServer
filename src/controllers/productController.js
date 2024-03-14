@@ -59,7 +59,7 @@ const createProduct = async (req, res) => {
   const { id } = req.user;
   try {
     const user = await getCurrentUser(id);
-    const companyExist = await company.findOne({ createdBy: user?.email });
+    const companyExist = await company.findOne({ name: companyName });
     const productAlreadyExist = await product.findOne({ name });
 
     if (!companyExist) {
@@ -146,9 +146,7 @@ const getAllProductsByCompany = async (req, res) => {
 
 // product validation fucntion
 const validateProduct = async (req, res) => {
-  const { itemCode, name } = req.body;
-
-  console.log(name);
+  const { itemCode } = req.body;
 
   const productCode = itemCode.split("-")[0];
 
@@ -167,12 +165,11 @@ const validateProduct = async (req, res) => {
       return res.status(400).json({ error: "Invalid QR code!" });
     }
 
-    // Delay deletion by 30 seconds
-    setTimeout(async () => {
-      productCheck.items.splice(checkCodeExist, 1);
-      await productCheck.save();
-      return res.status(200).json({ message: `Authentic ${name} product!` });
-    }, 30000);
+    productCheck.items.splice(checkCodeExist, 1);
+    await productCheck.save();
+    return res
+      .status(200)
+      .json({ message: `Authentic ${productCheck?.name} product!` });
   } catch (error) {
     res.status(500).json({ error: "Something went wrong validating product" });
   }

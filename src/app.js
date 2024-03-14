@@ -31,4 +31,8 @@ app.use("/api", communityRoutes);
 
 app.use(sanitize.clean({ xss: true, noSql: true, sql: true }));
 
+app.get("/", (req, res) => {
+  res.send("success");
+});
+
 module.exports = app;
