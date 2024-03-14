@@ -117,14 +117,14 @@ const deleteBlog = async (req, res) => {
 
 const getSingleBlog = async (req, res) => {
   const blogTitle = req.params.blogTitle;
-  console.log(blogTitle);
+
   try {
     // Find all blogs in the database
     const blog = await Blog.findOne({ title: blogTitle }); // Using Mongoose to find all blog documents
 
     if (!blog) {
       // If no blogs are found, return a 401 error
-      return res.status(404).json({ error: "Blog npt found" });
+      return res.status(404).json({ error: "Blog not found" });
     }
 
     // If blogs are found, return them as a JSON response with a 200 status code
