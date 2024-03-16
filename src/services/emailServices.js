@@ -10,7 +10,7 @@ const sendVerificationEmail = (email, otp, firstName) => {
     <p></p>
     <p>Welcome to PureCheck!</p>
     <p></p>
-    <p>To ensure the security of your account and protect your data, we need to verify your email address. Please use the following One-Time Password (OTP) to complete the verification process:</p>
+    <p>Please use the following One-Time Password (OTP) to complete your verification process:</p>
     <p></p>
     <p style="text-align:center;"><span style="font-size: 36px;"><strong>${otp}</strong></span></p>
     <p></p>
@@ -30,4 +30,26 @@ const sendVerificationEmail = (email, otp, firstName) => {
   });
 };
 
-module.exports = { sendVerificationEmail };
+const sendContactUsEmail = (name, email, message) => {
+  // console.log(name);
+  const mailOptions = {
+    from: email,
+    to: envVariables.USER_EMAIL,
+    subject: `Contact Form Submission - ${name}`,
+    html: `
+    <p>Name: ${name}</p>
+    <p>Email: ${email}</p>
+    <p>Message: ${message}</p>
+  `,
+  };
+
+  transport.sendMail(mailOptions, (error) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("email sent successfully");
+    }
+  });
+};
+
+module.exports = { sendVerificationEmail, sendContactUsEmail };

@@ -8,6 +8,7 @@ const authRoutes = require("./routes/authRoute");
 const companyRoutes = require("./routes/companyRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 const communityRoutes = require("./routes/communityRoutes");
+const contactUsRoutes = require("./routes/contactUsRoutes");
 
 // cors option object to establish handshake with client
 const corsOptions = {
@@ -28,6 +29,7 @@ app.use("/api", authRoutes);
 app.use("/api", companyRoutes);
 app.use("/api", blogRoutes);
 app.use("/api", communityRoutes);
+app.use("/api", contactUsRoutes);
 
 app.use(sanitize.clean({ xss: true, noSql: true, sql: true }));
 
