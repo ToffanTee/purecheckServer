@@ -162,7 +162,9 @@ const validateProduct = async (req, res) => {
     );
 
     if (checkCodeExist === -1) {
-      return res.status(400).json({ error: "Invalid QR code!" });
+      return res
+        .status(400)
+        .json({ error: `Used ${productCheck?.name} QR code!` });
     }
 
     productCheck.items.splice(checkCodeExist, 1);
