@@ -174,6 +174,7 @@ const validateProduct = async (req, res) => {
       .json({ message: `Authentic ${productCheck?.name} product!` });
   } catch (error) {
     res.status(500).json({ error: "Something went wrong validating product" });
+    console.log(error);
   }
 };
 
