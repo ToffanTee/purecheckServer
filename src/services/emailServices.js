@@ -30,8 +30,34 @@ const sendVerificationEmail = (email, otp, firstName) => {
   });
 };
 
+const sendForgotPasswordEmail = (email, otp, firstName) => {
+  const mailOptions = {
+    from: envVariables.USER_EMAIL,
+    to: email,
+    subject: "Forgot Password OTP",
+    html: `<p>Dear ${firstName},</p>
+
+    <p></p>
+    <p>Please use the following One-Time Password (OTP) to reset your password (valid for one hour):</p>
+    <p></p>
+    <p style="text-align:center;"><span style="font-size: 36px;"><strong>${otp}</strong></span></p>
+    <p></p>
+    <p>Please enter this OTP within the PureCheck website &nbsp;</p>
+    <p></p>
+    <p>If you didn't request this verification or have any questions, please contact our support team at tonyetoffan@gmail.com.</p>
+    `,
+  };
+
+  transport.sendMail(mailOptions, (error) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("email sent successfully");
+    }
+  });
+};
+
 const sendContactUsEmail = (name, email, message) => {
-  // console.log(name);
   const mailOptions = {
     from: email,
     to: envVariables.USER_EMAIL,
@@ -52,4 +78,8 @@ const sendContactUsEmail = (name, email, message) => {
   });
 };
 
-module.exports = { sendVerificationEmail, sendContactUsEmail };
+module.exports = {
+  sendVerificationEmail,
+  sendForgotPasswordEmail,
+  sendContactUsEmail,
+};

@@ -36,6 +36,8 @@ const userSchema = new Schema(
       default: false,
     },
 
+    passwordResetToken: String, // Store OTP
+    passwordResetExpires: Date, // Store OTP expiration time
     verificationToken: String,
     // verified: Boolean,
   },
