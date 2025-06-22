@@ -22,3 +22,5 @@ mongoose.connect(process.envVariables.DB_URI, {
   console.error('❌ Database connection failed!');
   console.error(err.message);  // <--- shows real reason
 });
+
+module.exports = connectDatabase;
